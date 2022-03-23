@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complimentr-Glitch-Flask</title>
+    <link rel="stylesheet" href="
+    {{ url_for('static',filename='assets/main.css') }}">
+</head>
+<body>
+    <div id="app" class="container">
+        <!-- Show all flash messages -->
+        <h1>Complimentr</h1>
+        <!-- TODO: add flash messages here -->
+        {% for flask_msg in get_flasked_messages() %}
+            <div class="flask">{{ flask_msg }}</div>
+        {% endfor %}
+
+        
+        <!-- Show all compliments stacks -->
+        <h2>Recent Compliments</h2>
+        <div class="content">
+            <!-- TODO: list all messages from complimentr -->
+            {% if messages %}
+                <ul>
+                    {% for msg in messages %}
+                    <li>{{ msg.body }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+
+        <!-- interface for send compliment -->
+        <h2>Send a compliment</h2>
+        <!-- TODO: make a form to allow write all parts of compliments -->
+        <form methods="post" action="/add-compliment" class="main-form" id="compliment-form">
+            <div class="form-row">
+                <label for="to">
+                    Number to compliment
+                    <input type="tel" placeholder="+16204980702" name="to" />
+                </label>
+                <label for="sender">
+                    Your name
+                    <input type="text" placeholder="Jane" name="sender" />
+                </label>
+            </div>
+            <div class="form-row">
+                <label for="receiver">
+                    Person to compliment
+                    <input type="text" placeholder="Sally" name="receiver" />
+                </label>
+                <span class="float-text">is</span>
+                <label for="compliment">
+                    Your compliment
+                    <input type="text" placeholder="an amazing person!" name="compliment" />
+                </label>
+            </div>
+
+        </form>
+
+        <button form="compliment-form" class="compliment-button">Send compliment</button>
+
+
+    </div>
+    
+</body>
+</html>
